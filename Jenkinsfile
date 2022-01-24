@@ -63,6 +63,17 @@ pipeline {
    }
    }
 
+stage('Run Container on Dev Server'){
+	steps {
+     	sshagent(['jenkins_docker']) {
+             sh 'docker run -p 9080:9080 -d --name my-app rajuyathi/petclinic-spinnaker-jenkins'
+       		//sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.35.179 docker rm -f my-app || true"
+		    //sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.35.179 ${DOCKER_RUN}"
+     	}
+
+	}
+	}
+
 
 
  }   
