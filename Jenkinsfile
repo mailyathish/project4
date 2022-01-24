@@ -46,6 +46,24 @@ pipeline {
         }
 
 
+    stage('Push Docker Image'){
+	steps {
+	
+	withCredentials([string(credentialsId: 'DockerPWDS', variable: 'DockerPass')]) {
+    	// some block
+
+	//sh '/Applications/Docker.app/Contents/Resources/bin/docker login -u rajuyathi -p ${DockerPass}'
+   sh 'docker login -u rajuyathi -p ${DockerPass}'
+
+	
+	 // some block
+	//sh '/Applications/Docker.app/Contents/Resources/bin/docker push rajuyathi/calculator:latest'
+   sh 'docker push rajuyathi/petclinic-spinnaker-jenkins:latest'
+	}
+   }
+   }
+
+
 
  }   
 }
